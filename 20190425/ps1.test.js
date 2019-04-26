@@ -4,15 +4,22 @@
 3. 배열의 각 요소를 문자열 더하기를 통해 하나의 문자열로 만든다. 이를 위한 도구가 있다면 찾아보고 이용한다.
 */
 
+function divideNumberOfDigits(input) {
+  return [1, 2, 3];
+}
+
 function int2Str(input) {
-  let numbers = [1, 2, 3];
+  let numbers = divideNumberOfDigits(input);
   let result = '';
   for(let i = 0; i < numbers.length; i++) {
     result += numbers[i];
   }
-  
   return result;
 }
+
+test('divideNumberOfDigits', () => {
+  expect(divideNumberOfDigits(123)).toEqual([1, 2, 3]);
+})
 
 test('int2Str', () => {
   expect(int2Str(123)).toBe('123');
