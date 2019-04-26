@@ -1,0 +1,22 @@
+{
+  "name": "daily_ps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wholemann/daily_ps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wholemann/daily_ps/issues"
+  },
+  "homepage": "https://github.com/wholemann/daily_ps#readme",
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
+}
