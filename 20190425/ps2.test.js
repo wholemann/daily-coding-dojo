@@ -7,17 +7,17 @@
 
 function splitString(input) {
   const words = [];
-  let word = '';
-  let startIndex = 0;
-  let blankIndex = 1;
-  for (let i = startIndex; i < blankIndex; i++) {
-    word += input[i];
-  }
-  words.unshift(word);
-  words.unshift('am');
-  words.unshift('a');
-  words.unshift('boy.');
 
+  let tempStr = '';
+  for (let i = 0; i < input.length; i++) {
+    if (input[i] == ' ') {
+      words.unshift(tempStr);
+      tempStr = '';
+      continue;
+    }
+    tempStr += input[i];
+  }
+  words.unshift(tempStr);
   return words;
 }
 
@@ -36,6 +36,15 @@ function reverseString(input) {
 test('reverseString', () => {
   expect(reverseString('I am a boy.')).toEqual('boy. a am I');
 });
+
+test('reverseString', () => {
+  expect(reverseString('Asturias')).toEqual('Asturias');
+});
+
+test('reverseString', () => {
+  expect(reverseString('I am a boy. You are a girl.')).toEqual('girl. a are You boy. a am I');
+});
+
 
 test('splitString', () => {
   expect(splitString('I am a boy.')).toEqual(['boy.', 'a', 'am', 'I']);
