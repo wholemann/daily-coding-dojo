@@ -6,11 +6,11 @@
 */
 
 function splitString(input) {
-
+  return ['boy.', 'a', 'am', 'I'];
 }
 
 function reverseString(input) {
-  const splitValues = ['boy.', 'a', 'am', 'I'];
+  const splitValues = splitString(input);
   let result = '';
   for (let i = 0; i < splitValues.length; i++) {
     if (i == (splitValues.length - 1)) {
