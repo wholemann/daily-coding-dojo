@@ -67,6 +67,3 @@ test('divideNumberOfDigits', () => {
 test('divideNumberOfDigits', () => {
   expect(divideNumberOfDigits(0)).toEqual([0]);
 });
-// test('divideNumberOfDigits', () => {
-//   expect(divideNumberOfDigits(-123)).toEqual([-1, 2, 3]);
-// });
