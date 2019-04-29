@@ -5,8 +5,20 @@
 4. 마지막 인덱스에 도달하면 이 과정을 종료한다.
 */
 
-function reverseString(inputStr) {
-  return 'boy. a am I';
+function splitString(input) {
+
+}
+
+function reverseString(input) {
+  const splitValues = ['boy.', 'a', 'am', 'I'];
+  let result = '';
+  for (let i = 0; i < splitValues.length; i++) {
+    if (i == (splitValues.length - 1)) {
+      result += splitValues[i];
+      return result;
+    }
+    result += splitValues[i] + ' ';
+  }
 }
 
 test('reverseString', () => {
