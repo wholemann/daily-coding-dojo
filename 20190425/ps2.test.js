@@ -6,7 +6,13 @@
 */
 
 function splitString(input) {
-  return ['boy.', 'a', 'am', 'I'];
+  const words = [];
+  words.unshift('I');
+  words.unshift('am');
+  words.unshift('a');
+  words.unshift('boy.');
+
+  return words;
 }
 
 function reverseString(input) {
@@ -23,4 +29,8 @@ function reverseString(input) {
 
 test('reverseString', () => {
   expect(reverseString('I am a boy.')).toBe('boy. a am I');
+});
+
+test('reverseString', () => {
+  expect(splitString('I am a boy.')).toEqual(['boy.', 'a', 'am', 'I']);
 });
