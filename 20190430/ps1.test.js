@@ -6,25 +6,12 @@
 5. 배열에 담긴 요소들을 더하여 문자열로 만든다.
 */
 
-function getDigitArray(input) {
-  return [3, 4];
-}
-
 function int2Str(input) {
-  if (input == 4) {
-    const numbers = [];
-    let digit = input % 10;
-    numbers.unshift(digit);
-    return numbers.join('');
+  let digit = input % 10;
+  if (input < 10) {
+    return [digit] + [];
   }
-  if (input == 34) {
-    const numbers = [];
-    let digit = input % 10;
-    numbers.unshift(digit);
-    digit = ((input - digit) / 10) % 10;
-    numbers.unshift(digit);
-    return numbers.join('');
-  }
+  return [int2Str((input - digit) / 10)] + [digit];
 }
 
 describe('int2Str', () => {
@@ -38,11 +25,14 @@ describe('int2Str', () => {
       expect(int2Str(34)).toBe('34');
     });
   });
-});
-describe('getDigitArray', () => {
-  describe('when input 34', () => {
-    it('returns numbers array', () => {
-      expect(getDigitArray(34)).toEqual([3, 4]);
+  describe('when input 234', () => {
+    it('returns string 234', () => {
+      expect(int2Str(234)).toBe('234');
+    });
+  });
+  describe('when input 0', () => {
+    it('returns string 0', () => {
+      expect(int2Str(0)).toBe('0');
     });
   });
 });
