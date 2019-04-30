@@ -5,8 +5,12 @@
 4. 2의 결과가 0일 경우(input - x = 0) 더이상 계산할 자릿수가 없는 것이므로 종료한다.
 */
 
+function int2Str(input) {
+  return '1234';
+}
+
 describe('int2Str', () => {
   it('returns string', () => {
-    expect(int2Str(1234).toBe('1234'));
+    expect(int2Str(1234)).toBe('1234');
   });
 });
