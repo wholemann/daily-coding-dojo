@@ -28,7 +28,20 @@ class DoublyLinkedList {
     node.prevNode = this.tail;
     this.tail = node;
   }
-  
+}
+
+class Stack extends DoublyLinkedList {
+  constructor() {
+    super();
+  }
+
+  push() {
+
+  }
+
+  pop() {
+    return 3;
+  }
 }
 
 describe('DoublyLinkedList', () => {
@@ -40,6 +53,16 @@ describe('DoublyLinkedList', () => {
     expect(list.getLast()).toBe(3);
     list.removeLast();
     expect(list.getLast()).toBe(2);
+  });
+});
+
+describe('Stack', () => {
+  describe('pop', () => {
+    const stack = new Stack();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    expect(stack.pop()).toBe(3);
   });
 });
 
