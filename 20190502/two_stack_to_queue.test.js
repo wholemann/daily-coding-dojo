@@ -2,13 +2,37 @@ Array.prototype.isEmpty = function() {
   return this.length === 0;
 }
 
+class Node {
+  constructor(value) {
+    this.nextNode = null;
+    this.prevNode = null;
+    this.value = value;
+  }
+}
+
+class DoublyLinkedList {
+  constructor() {
+    this.tail = null;
+  }
+
+  append(value) {
+    const node = new Node(value);
+    this.tail = node;
+  }
+
+  getLast() {
+    return this.tail.value;
+  }
+  
+}
+
 describe('DoublyLinkedList', () => {
   describe('append', () => {
     const list = new DoublyLinkedList();
     list.append(1);
     list.append(2);
     list.append(3);
-    expect(getLast()).toBe(3);
+    expect(list.getLast()).toBe(3);
   });
 });
 
