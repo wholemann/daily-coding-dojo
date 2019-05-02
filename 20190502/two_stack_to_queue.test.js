@@ -1,7 +1,29 @@
+Array.prototype.isEmpty = function() {
+  if (this.length === 0) {
+    return true;
+  }
+  return false;
+}
+
 test('queue', () => {
 
   const queue = {
-    
+    enqueueStack: [],
+
+    dequeueStack: [],
+
+    enqueue(value) {
+      this.enqueueStack.push(value);
+    },
+    dequeue() {
+      if (this.dequeueStack.isEmpty()) {
+        while (!this.enqueueStack.isEmpty()) {
+          const value = this.enqueueStack.pop();
+          this.dequeueStack.push(value);
+        }
+      }
+      return this.dequeueStack.pop();
+    }
   };
 
   queue.enqueue(1);
