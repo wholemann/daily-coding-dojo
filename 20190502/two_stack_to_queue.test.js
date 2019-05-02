@@ -35,12 +35,14 @@ class Stack extends DoublyLinkedList {
     super();
   }
 
-  push() {
-
+  push(value) {
+    this.append(value);
   }
 
   pop() {
-    return 3;
+    const value = this.getLast();
+    this.removeLast();
+    return value;
   }
 }
 
@@ -63,6 +65,17 @@ describe('Stack', () => {
     stack.push(2);
     stack.push(3);
     expect(stack.pop()).toBe(3);
+    expect(stack.pop()).toBe(2);
+  });
+  describe('isEmpty', () => {
+    const stack = new Stack();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    expect(stack.pop()).toBe(3);
+    expect(stack.pop()).toBe(2);
+    expect(stack.pop()).toBe(1);
+    expect(stack.isEmpty()).toBe(true);
   });
 });
 
