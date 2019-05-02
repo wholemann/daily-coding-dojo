@@ -1,7 +1,3 @@
-Array.prototype.isEmpty = function() {
-  return this.length === 0;
-}
-
 class Node {
   constructor(value) {
     this.nextNode = null;
