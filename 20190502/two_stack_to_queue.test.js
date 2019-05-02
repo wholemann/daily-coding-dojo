@@ -88,9 +88,9 @@ describe('Stack', () => {
 test('queue', () => {
 
   const queue = {
-    enqueueStack: [],
+    enqueueStack: new Stack(),
 
-    dequeueStack: [],
+    dequeueStack: new Stack(),
 
     enqueue(value) {
       this.enqueueStack.push(value);
