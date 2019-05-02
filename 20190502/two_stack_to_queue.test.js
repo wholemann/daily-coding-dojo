@@ -2,6 +2,16 @@ Array.prototype.isEmpty = function() {
   return this.length === 0;
 }
 
+describe('DoublyLinkedList', () => {
+  describe('append', () => {
+    const list = new DoublyLinkedList();
+    list.append(1);
+    list.append(2);
+    list.append(3);
+    expect(getLast()).toBe(3);
+  });
+});
+
 test('queue', () => {
 
   const queue = {
