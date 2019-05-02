@@ -14,14 +14,19 @@ class DoublyLinkedList {
   constructor() {
     this.tail = null;
   }
+  
+  getLast() {
+    return this.tail.value;
+  }
+
+  removeLast() {
+    this.tail = this.tail.prevNode;
+  }
 
   append(value) {
     const node = new Node(value);
+    node.prevNode = this.tail;
     this.tail = node;
-  }
-
-  getLast() {
-    return this.tail.value;
   }
   
 }
@@ -33,6 +38,8 @@ describe('DoublyLinkedList', () => {
     list.append(2);
     list.append(3);
     expect(list.getLast()).toBe(3);
+    list.removeLast();
+    expect(list.getLast()).toBe(2);
   });
 });
 
