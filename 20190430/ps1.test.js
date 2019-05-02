@@ -8,9 +8,9 @@
 
 function int2Str(input) {
   let digit = input % 10;
-  if (input < 10) {
-    return [digit] + [];
-  }
+  if (input < 10)
+    return [digit]+'';
+  // 아니 [2] + [3] 하면 문자열 '23'이 나오다니. 뭘까? 
   return [int2Str((input - digit) / 10)] + [digit];
 }
 
