@@ -36,7 +36,7 @@ function quickSort(phoneBook) {
   const left = [];
   const right = [];
   
-  for(let i = 0; i < phoneBook.length; i++){
+  for (let i = 0; i < phoneBook.length; i++){
     if (pivot > phoneBook[i].name) {
       left.push(phoneBook[i]);
     }
