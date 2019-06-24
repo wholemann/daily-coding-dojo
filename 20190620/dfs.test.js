@@ -84,7 +84,6 @@ class Graph {
   dfs(startVertex) {
     const stack = [];
     const visited = new Set();
-    const searchPath = [];
 
     const traversalAdjacency = (vertex) => {
       this.edges[vertex]
@@ -104,6 +103,34 @@ class Graph {
     traversalAdjacency(startVertex);
 
     return stack.join(' ');
+  }
+
+  topologicalSort(startVertex) {
+    const finishedStack = [];
+    const visited = new Set();
+    let cycleCount = 0;
+
+    const traversalAdjacency = (vertex) => {
+      this.edges[vertex]
+      .forEach(v => {
+        if (!visited.has(v)) {
+          visited.add(v);
+          traversalAdjacency(v);
+        } else if (!finishedStack.includes(v)) {
+          cycleCount += 1;
+        }
+      });
+      finishedStack.push(vertex);
+    }
+
+    visited.add(startVertex);
+    traversalAdjacency(startVertex);
+
+    if (cycleCount > 0) {
+      return 'This graph is not DAG';
+    }
+
+    return finishedStack.reverse().join(' ');
   }
 }
 
@@ -263,7 +290,44 @@ describe('DFS', () => {
     edges.forEach(edge => {
       graph.addEdge(...edge);
     });
-    console.log(graph.printGraph());
+    console.log('DFS\n' + graph.printGraph());
     expect(graph.dfs('A')).toEqual('A B C E D F');
   });
 });
+
+describe('Topological sorting', () => {
+  let graph;
+
+  beforeEach(() => {
+    graph = new Graph();
+  });
+
+  it('should return A D C F B E G if vertices and edges as below', () => {
+    const vertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    vertices.forEach(vertex => {
+      graph.addVertex(vertex);
+    });
+
+    const edges = [['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'E'], ['E', 'G'], ['C', 'F'], ['C', 'E'], ['F', 'B']];
+    edges.forEach(edge => {
+      graph.addDirectedEdge(...edge);
+    });
+    console.log('Topological sorting\n' + graph.printGraph());
+    expect(graph.topologicalSort('A')).toEqual('A D C F B E G');
+  });
+
+  it(`should return 'This graph is not DAG' if vertices and edges as below`, () => {
+    const vertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    vertices.forEach(vertex => {
+      graph.addVertex(vertex);
+    });
+
+    const edges = [['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'E'], ['E', 'G'], ['C', 'F'], ['C', 'E'], ['F', 'B'], ['G', 'B']];
+    edges.forEach(edge => {
+      graph.addDirectedEdge(...edge);
+    });
+    console.log('Topological sorting(not DAG)\n' + graph.printGraph());
+    expect(graph.topologicalSort('A')).toEqual('This graph is not DAG');
+  });
+});
+
