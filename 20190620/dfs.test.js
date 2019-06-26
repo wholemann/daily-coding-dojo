@@ -51,13 +51,18 @@ class Graph {
     this.edges[vertex1].push(vertex2);
   }
 
+  hasVertex(vertex) {
+    return this.vertices.includes(vertex);
+  }
+
+  isConnected(from, to) {
+    return this.edges[from].includes(to);
+  }
+
   getGraph() {
-    return this.vertices
-      .map(
-        (vertex) => 
+    return this.vertices.map((vertex) => 
           `${vertex} => ${this.edges[vertex].join(' ')}`
-        )
-      .join('\n');
+        );
   }
 
   bfs(startVertex) {
@@ -148,8 +153,8 @@ describe('Graph', () => {
   test('addVertex', () => {
     graph.addVertex('A');
     graph.addVertex('B');
-    expect(graph.vertices.includes('A')).toBeTruthy();
-    expect(graph.vertices.includes('B')).toBeTruthy();
+    expect(graph.hasVertex('A')).toBeTruthy();
+    expect(graph.hasVertex('B')).toBeTruthy();
   });
 
   test('AddEdge', () => {
@@ -157,8 +162,8 @@ describe('Graph', () => {
     graph.addVertex('B');
     graph.addEdge('A', 'B');
 
-    expect(graph.edges['A'].includes('B')).toBeTruthy();
-    expect(graph.edges['B'].includes('A')).toBeTruthy();
+    expect(graph.isConnected('A', 'B')).toBeTruthy();
+    expect(graph.isConnected('B', 'A')).toBeTruthy();
   });
 
   test('AddDirectedEdge', () => {
@@ -166,8 +171,8 @@ describe('Graph', () => {
     graph.addVertex('B');
     graph.addDirectedEdge('A', 'B');
 
-    expect(graph.edges['A'].includes('B')).toBeTruthy();
-    expect(graph.edges['B'].includes('A')).toBeFalsy();
+    expect(graph.isConnected('A', 'B')).toBeTruthy();
+    expect(graph.isConnected('B', 'A')).toBeFalsy();
   });
 
   test('getGraph() with UndirectedEdges', () => {
@@ -177,17 +182,17 @@ describe('Graph', () => {
     });
 
     const edges = [['A', 'B'], ['A', 'C'], ['A', 'E'], ['B', 'D'], ['C', 'D']];
-    edges.forEach(edge => {
-      graph.addEdge(...edge);
+    edges.forEach(([from, to]) => {
+      graph.addEdge(from, to);
     });
 
-    expect(graph.getGraph()).toEqual(
-      `A => B C E
-B => A D
-C => A D
-D => B C
-E => A`
-    );
+    expect(graph.getGraph()).toEqual([
+      'A => B C E',
+      'B => A D',
+      'C => A D',
+      'D => B C',
+      'E => A'
+    ]);
   });
 
   test('getGraph() with DirectedEdges', () => {
@@ -197,17 +202,17 @@ E => A`
     });
 
     const edges = [['A', 'B'], ['A', 'C'], ['A', 'E'], ['B', 'D'], ['C', 'D']];
-    edges.forEach(edge => {
-      graph.addDirectedEdge(...edge);
+    edges.forEach(([from, to]) => {
+      graph.addDirectedEdge(from, to);
     });
 
-    expect(graph.getGraph()).toEqual(
-      `A => B C E
-B => D
-C => D
-D => 
-E => `
-    );
+    expect(graph.getGraph()).toEqual([
+      'A => B C E',
+      'B => D',
+      'C => D',
+      'D => ',
+      'E => '
+    ]);
   });
 });
 
@@ -237,8 +242,8 @@ describe('BFS', () => {
     });
 
     const edges = [['A', 'B'], ['A', 'C']];
-    edges.forEach(edge => {
-      graph.addDirectedEdge(...edge);
+    edges.forEach(([from, to]) => {
+      graph.addDirectedEdge(from, to);
     });
 
     expect(graph.bfs('A')).toEqual('A B C');
@@ -251,8 +256,8 @@ describe('BFS', () => {
     });
 
     const edges = [['A', 'B'], ['A', 'D'], ['A', 'E'], ['B', 'C'], ['D', 'E'], ['E', 'F'], ['E', 'C'], ['C', 'F']];
-    edges.forEach(edge => {
-      graph.addEdge(...edge);
+    edges.forEach(([from, to]) => {
+      graph.addEdge(from, to);
     });
 
     expect(graph.bfs('A')).toEqual('A B D E C F');
@@ -273,8 +278,8 @@ describe('DFS', () => {
     });
 
     const edges = [['A', 'B'], ['A', 'C'], ['B', 'D']];
-    edges.forEach(edge => {
-      graph.addDirectedEdge(...edge);
+    edges.forEach(([from, to]) => {
+      graph.addDirectedEdge(from, to);
     });
 
     expect(graph.dfs('A')).toEqual('A B D C');
@@ -287,8 +292,8 @@ describe('DFS', () => {
     });
 
     const edges = [['A', 'B'], ['A', 'D'], ['A', 'E'], ['B', 'C'], ['D', 'E'], ['E', 'F'], ['E', 'C'], ['C', 'F']];
-    edges.forEach(edge => {
-      graph.addEdge(...edge);
+    edges.forEach(([from, to]) => {
+      graph.addEdge(from, to);
     });
     console.log('DFS\n' + graph.getGraph());
     expect(graph.dfs('A')).toEqual('A B C E D F');
@@ -309,8 +314,8 @@ describe('Topological sorting', () => {
     });
 
     const edges = [['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'E'], ['E', 'G'], ['C', 'F'], ['C', 'E'], ['F', 'B']];
-    edges.forEach(edge => {
-      graph.addDirectedEdge(...edge);
+    edges.forEach(([from, to]) => {
+      graph.addDirectedEdge(from, to);
     });
     console.log('Topological sorting\n' + graph.getGraph());
     expect(graph.topologicalSort('A')).toEqual('A D C F B E G');
@@ -323,8 +328,8 @@ describe('Topological sorting', () => {
     });
 
     const edges = [['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'E'], ['E', 'G'], ['C', 'F'], ['C', 'E'], ['F', 'B'], ['G', 'B']];
-    edges.forEach(edge => {
-      graph.addDirectedEdge(...edge);
+    edges.forEach(([from, to]) => {
+      graph.addDirectedEdge(from, to);
     });
     console.log('Topological sorting(not DAG)\n' + graph.getGraph());
     expect(graph.topologicalSort('A')).toEqual('This graph is not DAG');
