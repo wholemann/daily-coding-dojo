@@ -51,7 +51,7 @@ class Graph {
     this.edges[vertex1].push(vertex2);
   }
 
-  printGraph() {
+  getGraph() {
     return this.vertices
       .map(
         (vertex) => 
@@ -170,7 +170,7 @@ describe('Graph', () => {
     expect(graph.edges['B'].includes('A')).toBeFalsy();
   });
 
-  test('printGraph() with UndirectedEdges', () => {
+  test('getGraph() with UndirectedEdges', () => {
     const vertices = ['A', 'B', 'C', 'D', 'E'];
     vertices.forEach(vertex => {
       graph.addVertex(vertex);
@@ -181,7 +181,7 @@ describe('Graph', () => {
       graph.addEdge(...edge);
     });
 
-    expect(graph.printGraph()).toEqual(
+    expect(graph.getGraph()).toEqual(
       `A => B C E
 B => A D
 C => A D
@@ -190,7 +190,7 @@ E => A`
     );
   });
 
-  test('printGraph() with DirectedEdges', () => {
+  test('getGraph() with DirectedEdges', () => {
     const vertices = ['A', 'B', 'C', 'D', 'E'];
     vertices.forEach(vertex => {
       graph.addVertex(vertex);
@@ -201,7 +201,7 @@ E => A`
       graph.addDirectedEdge(...edge);
     });
 
-    expect(graph.printGraph()).toEqual(
+    expect(graph.getGraph()).toEqual(
       `A => B C E
 B => D
 C => D
@@ -290,7 +290,7 @@ describe('DFS', () => {
     edges.forEach(edge => {
       graph.addEdge(...edge);
     });
-    console.log('DFS\n' + graph.printGraph());
+    console.log('DFS\n' + graph.getGraph());
     expect(graph.dfs('A')).toEqual('A B C E D F');
   });
 });
@@ -312,7 +312,7 @@ describe('Topological sorting', () => {
     edges.forEach(edge => {
       graph.addDirectedEdge(...edge);
     });
-    console.log('Topological sorting\n' + graph.printGraph());
+    console.log('Topological sorting\n' + graph.getGraph());
     expect(graph.topologicalSort('A')).toEqual('A D C F B E G');
   });
 
@@ -326,7 +326,7 @@ describe('Topological sorting', () => {
     edges.forEach(edge => {
       graph.addDirectedEdge(...edge);
     });
-    console.log('Topological sorting(not DAG)\n' + graph.printGraph());
+    console.log('Topological sorting(not DAG)\n' + graph.getGraph());
     expect(graph.topologicalSort('A')).toEqual('This graph is not DAG');
   });
 });
