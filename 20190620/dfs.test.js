@@ -92,15 +92,15 @@ class Graph {
 
     const traversalAdjacency = (vertex) => {
       this.edges[vertex]
-      .filter(v => !visited.has(v))
-      .forEach(v => {
-        if (visited.has(v)) {
-          return;
-        }
-        visited.add(v);
-        stack.push(v);
-        traversalAdjacency(v);
-      });      
+        .filter(v => !visited.has(v))
+        .forEach(v => {
+          if (visited.has(v)) {
+            return;
+          }
+          visited.add(v);
+          stack.push(v);
+          traversalAdjacency(v);
+        });
     }
 
     stack.push(startVertex);
