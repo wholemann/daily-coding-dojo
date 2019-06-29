@@ -8,7 +8,8 @@ https://programmers.co.kr/learn/courses/30/lessons/42587?language=javascript
 ### 이해
 
 - 큐를 이용해야 된다(js 배열)
-- 우선순위 최대값이 가장 먼저 인쇄, 재귀를 이용하면 편할 듯.
+- 우선순위 최대값이 가장 먼저 인쇄.
+- 우선순위가 값으로 부여된 object를 만들면 편할 것 같다.
 
 ### 계획
 
