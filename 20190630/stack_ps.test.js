@@ -7,7 +7,7 @@ function getReceiveOrder(heights) {
   const towerList = [...heights];
   const result = [];
   
-  while (!(stack.length === 0)) {
+  while (!(towerList.length === 0)) {
     const sender = towerList.pop();
     result.unshift(getNearestReceiver(towerList, sender));
   }
