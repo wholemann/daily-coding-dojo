@@ -1,15 +1,15 @@
-function getNearestReceiver(stack, sender) {
-  return stack.map(v => v > sender ? true : false).lastIndexOf(true) + 1;
+function getNearestReceiver(towerList, sender) {
+  return towerList.map(v => v > sender ? true : false).lastIndexOf(true) + 1;
 }
 
 function getReceiveOrder(heights) {
 
-  const stack = [...heights];
+  const towerList = [...heights];
   const result = [];
   
   while (!(stack.length === 0)) {
-    const sender = stack.pop();
-    result.unshift(getNearestReceiver(stack, sender));
+    const sender = towerList.pop();
+    result.unshift(getNearestReceiver(towerList, sender));
   }
 
   return result;
