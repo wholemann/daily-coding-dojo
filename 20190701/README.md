@@ -1,3 +1,9 @@
+### 문제
+
+https://programmers.co.kr/learn/courses/30/lessons/42576?language=javascript
+
+---
+
 ### 이해
 
 - HashMap을 만들어서 참가자를 Key, 숫자를 Value로 하여 동명이인일 경우 +1해주자.

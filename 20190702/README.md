@@ -1,3 +1,9 @@
+### 문제
+
+https://programmers.co.kr/learn/courses/30/lessons/42578?language=javascript
+
+---
+
 ### 이해
 
 - 의상의 종류를 키값으로 가진 Object를 만들면 될 것 같다.
