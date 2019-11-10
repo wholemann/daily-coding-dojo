@@ -1,3 +1,5 @@
+문제: https://programmers.co.kr/learn/courses/30/lessons/12915
+
 ## 1. 이해
 
 * strings: 문자열로 구성된 배열
