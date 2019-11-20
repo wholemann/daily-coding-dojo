@@ -27,4 +27,9 @@ class FeatureDevTest {
     fun `return deployment counts per day`() {
         assertThat(getDeploymentCounts(intArrayOf(93, 30, 55), intArrayOf(1, 30, 5))).isEqualTo(intArrayOf(2, 1))
     }
+
+    @Test
+    fun `return sum of each pair`() {
+        assertThat(zipping(intArrayOf(93), intArrayOf(1))).isEqualTo(intArrayOf(94))
+    }
 }
