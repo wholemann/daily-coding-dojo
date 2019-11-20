@@ -4,7 +4,8 @@ const getDeploymentCounts = (progresses, speeds) => {
 
   leftDays.reduce((count, _, index) => {
     count += 1;
-    if (leftDays[index] < leftDays[index + 1] || leftDays.length === index + 1) {
+    progresses.shift();
+    if (leftDays[index] < leftDays[index + 1] || progresses.length === 0) {
       result.push(count);
       count = 0;
     }
