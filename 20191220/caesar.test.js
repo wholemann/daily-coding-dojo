@@ -6,14 +6,14 @@ const caesarEncrypt = (s, n) =>
   
 const convert = (char, distance) =>
   isUpperCase(char)
-    ? letters[index(char, distance)]
-    : letters[index(char.toUpperCase(), distance)].toLowerCase();
+    ? letters(65)[index(char, distance, 65)]
+    : letters(97)[index(char, distance, 97)];
 
 const isUpperCase = char => char === char.toUpperCase();
 
-const index = (char, distance) => (char.charCodeAt(0) % 65 + distance) % 26
+const index = (char, distance, offset) => (char.charCodeAt(0) % offset + distance) % 26
 
-const letters = [...Array(26).fill().map((_, i) => i + 65)]
+const letters = offset => [...Array(26).fill().map((_, i) => i + offset)]
   .map(v => String.fromCharCode(v));
 
 test('caesarEncrypt', () => {
