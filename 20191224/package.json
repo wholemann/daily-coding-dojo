@@ -1,0 +1,16 @@
+{
+  "name": "20191224",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^24.0.24",
+    "jest": "^24.9.0"
+  }
+}
