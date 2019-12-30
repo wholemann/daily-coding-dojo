@@ -7,7 +7,7 @@ fun solution(n: Int, lost: IntArray, reserve: IntArray) =
         distribute(n, (lost.toSet() - reserve.toSet()).toList(), (reserve.toSet() - lost.toSet()).toList())
 
 
-fun <T: Int> distribute(n: T, lost: List<Int>, reserve: List<T>): Int =
+tailrec fun <T: Int> distribute(n: T, lost: List<Int>, reserve: List<T>): Int =
         when {
             lost.isEmpty() -> n
             lost.first() - 1 in reserve -> distribute(n, lost.drop(1), reserve.filterNot { it == lost.first() - 1 })
