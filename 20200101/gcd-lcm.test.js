@@ -30,6 +30,5 @@ test('commonDivisors', () => {
 });
 
 test('euclidean', () => {
-  expect(euclidean(3, 12)).toBe(3);
   expect(euclidean(12, 3)).toBe(3);
 });
