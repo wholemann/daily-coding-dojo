@@ -1,6 +1,5 @@
 const solution = (n) =>
-  (n + '').split('').reduce((a, b) => a + (+b), 0);
-
+  [...`${n}`].reduce((a, b) => a + (+b), 0);
 
 test('solution', () => {
   expect(solution(1)).toBe(1);
