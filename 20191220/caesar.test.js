@@ -1,13 +1,15 @@
 const caesarEncrypt = (s, n) => 
-  s.split('').reduce((acc, char) => (
-    char === ' '
-      ? [...acc, char] : [...acc, convert(char, n)]
-    ), []).join('');
+  [...s].map((char) => (
+    char === ' ' ? char : convert(char, n)
+    )).join('');
   
 const convert = (char, distance) =>
   isUpperCase(char)
-    ? letters(65)[index(char, distance, 65)]
-    : letters(97)[index(char, distance, 97)];
+    ? letters(UPPER)[index(char, distance, UPPER)]
+    : letters(LOWER)[index(char, distance, LOWER)];
+
+const UPPER = 65;
+const LOWER = 97;
 
 const isUpperCase = char => char === char.toUpperCase();
 
