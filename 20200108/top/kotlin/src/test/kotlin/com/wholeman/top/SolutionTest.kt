@@ -35,7 +35,7 @@ tailrec fun <T : Int> step(heights: List<T>, receivers: List<T>): List<T> = when
 
 fun solution3(heights: IntArray) =
         heights.mapIndexed { i, sender ->
-            heights.dropLast(heights.size - i).indexOfLast { it > sender } + 1
+            heights.take(i).indexOfLast { it > sender } + 1
         }.toIntArray()
 
 class SolutionTest {
