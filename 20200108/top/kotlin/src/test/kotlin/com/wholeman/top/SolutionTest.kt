@@ -15,7 +15,8 @@ fun solution1(heights: IntArray): IntArray {
     for (i in heights.size - 1 downTo 0) {
         result.add(
                 0,
-                heights.dropLast(heights.size - i).indexOfLast { it > heights[i] } + 1)
+                heights.dropLast(heights.size - i).indexOfLast { it > heights[i] } + 1
+        )
     }
     return result.toIntArray()
 }
@@ -28,7 +29,8 @@ tailrec fun <T : Int> step(heights: List<T>, receivers: List<T>): List<T> = when
     heights.isEmpty() -> receivers
     else -> step(
             heights.dropLast(1),
-            receivers.plus(heights.indexOfLast { it > heights.last() } + 1)) as List<T>
+            receivers.plus(heights.indexOfLast { it > heights.last() } + 1)
+    ) as List<T>
 }
 
 fun solution3(heights: IntArray) =
