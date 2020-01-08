@@ -7,7 +7,7 @@ fun solution(skill: String, skill_trees: Array<String>): Int {
     return skill_trees
             .map { it.replace("""[^${skill}]""".toRegex(), "") }
             .count {
-                it.startsWith(skill.first()) || it.isBlank()
+                skill.startsWith(it) || it.isBlank()
             }
 }
 
