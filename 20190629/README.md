@@ -4,7 +4,6 @@ https://programmers.co.kr/learn/courses/30/lessons/42587?language=javascript
 
 ---
 
-
 ### 이해
 
 - 큐를 이용해야 된다(js 배열)
