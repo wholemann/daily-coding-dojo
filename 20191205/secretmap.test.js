@@ -4,7 +4,6 @@ const getDecryptedMap = (n, arr1, arr2) =>
       [arr1, arr2].map(decryptIntArrayToBinaryArray)
     )
   ).map((v) =>  v.join(''));
-  // const realMap =  combineMaps(decryptIntArrayToBinaryArray(arr1), decryptIntArrayToBinaryArray(arr2));
 
 const decryptIntArrayToBinaryArray = (array) =>
   array.map((v, i) => 
@@ -35,9 +34,6 @@ test('decryptIntArrayToBinaryArray', () => {
 });
 
 test('combineMaps', () =>{
-  // expect(combineMaps([[0,1,0,0,1],[1,0,1,0,0],[1,1,1,0,0],[1,0,0,1,0],[0,1,0,1,1]],
-  //                         [[1,1,1,1,0],[0,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,0,0]]))
-  //                         .toEqual([[1,1,1,1,1],[1,0,1,0,1],[1,1,1,0,1],[1,0,0,1,1],[1,1,1,1,1]]);
   expect(combineMaps([[[0,1,0,0,1],[1,0,1,0,0],[1,1,1,0,0],[1,0,0,1,0],[0,1,0,1,1]],
                           [[1,1,1,1,0],[0,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,0,0]]]))
                           .toEqual([[1,1,1,1,1],[1,0,1,0,1],[1,1,1,0,1],[1,0,0,1,1],[1,1,1,1,1]]);
