@@ -64,7 +64,9 @@ class SolutionTest {
 
     @Test
     fun `Create the set of numbers made by sum of three numbers`() {
-        assertThat(sumOfThree(intArrayOf(1, 2, 3, 4))).isEqualTo(listOf(6, 7, 8, 9))
+        arrayOf(::sumOfThree1, ::sumOfThree2).forEach { sumOfThree ->
+            assertThat(sumOfThree(intArrayOf(1, 2, 3, 4))).isEqualTo(listOf(6, 7, 8, 9))
+        }
     }
 
     @Test
