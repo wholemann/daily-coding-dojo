@@ -10,9 +10,7 @@ const solution1 = (n) => {
       }
     }
   }
-  return count;
-
-  
+  return count;  
 };
 
 // functional but slow
