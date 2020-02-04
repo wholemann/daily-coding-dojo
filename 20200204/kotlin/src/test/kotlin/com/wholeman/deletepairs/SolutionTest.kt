@@ -3,8 +3,8 @@ package com.wholeman.deletepairs
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-//
-fun solution(s: String): Int {
+
+fun solution1(s: String): Int {
     tailrec fun step(head: String, tail: String): Int = when {
         head.isBlank() -> 1
         tail.isBlank() -> 0
@@ -15,12 +15,21 @@ fun solution(s: String): Int {
     return step(s.firstOrNull().toString(), s.drop(1))
 }
 
+fun solution2(s: String) = if (s.fold("") { acc, c ->
+            when (c) {
+                acc.lastOrNull() -> acc.dropLast(1)
+                else -> acc + c
+            }
+        }.isBlank()) 1 else 0
+
 class SolutionTest {
 
     @Test
     fun `Delete pairs of adjacent letters in given string`() {
-        assertThat(solution("a")).isEqualTo(0)
-        assertThat(solution("baabaa")).isEqualTo(1)
-        assertThat(solution("cdcd")).isEqualTo(0)
+        arrayOf(::solution1, ::solution2).forEach { solution ->
+            assertThat(solution("a")).isEqualTo(0)
+            assertThat(solution("baabaa")).isEqualTo(1)
+            assertThat(solution("cdcd")).isEqualTo(0)
+        }
     }
 }
