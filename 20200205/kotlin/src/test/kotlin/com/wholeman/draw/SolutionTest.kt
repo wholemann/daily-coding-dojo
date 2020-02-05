@@ -13,7 +13,7 @@ fun solution(n: Int, a: Int, b: Int): Int {
     return step(a.toDouble(), b.toDouble(), 1)
 }
 
-fun next(x: Double) = ceil((x / 2))
+fun next(x: Double) = ceil(x / 2)
 
 class SolutionTest {
 
