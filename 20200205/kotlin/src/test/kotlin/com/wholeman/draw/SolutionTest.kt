@@ -2,19 +2,18 @@ package com.wholeman.draw
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import kotlin.math.ceil
 
 fun solution(n: Int, a: Int, b: Int): Int {
-    tailrec fun step(a: Int, b: Int, round: Int): Int = when {
-        isEven(a) && a - 1 == b -> round
-        isEven(b) && a + 1 == b -> round
+    tailrec fun step(a: Double, b: Double, round: Int): Int = when {
+        next(a) == next(b) -> round
         else -> step(next(a), next(b), round + 1)
     }
 
-    return step(a, b, 1)
+    return step(a.toDouble(), b.toDouble(), 1)
 }
 
-fun isEven(x: Int) = x % 2 == 0
-fun next(x: Int) = if (x % 2 == 0) x / 2 else (x + 1) / 2
+fun next(x: Double) = ceil((x / 2))
 
 class SolutionTest {
 
@@ -30,7 +29,7 @@ class SolutionTest {
 
     @Test
     fun `Generate number in next round`() {
-        assertThat(next(4)).isEqualTo(2)
-        assertThat(next(7)).isEqualTo(4)
+        assertThat(next(4.0)).isEqualTo(2.0)
+        assertThat(next(7.0)).isEqualTo(4.0)
     }
 }
