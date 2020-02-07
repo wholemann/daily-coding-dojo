@@ -4,8 +4,8 @@ const solution = (a, b) =>
       sum: sum + c * target[i],
       target: target,
     }), {
-      target: [...b].sort((a, b) => b - a),
       sum: 0,
+      target: [...b].sort((a, b) => b - a),
     }).sum;
 
 test('', () => {
