@@ -1,20 +1,47 @@
-/*
-1 1 -> 숫자 2개는 1, 2, 3 중에 2개란 뜻.
-1 0 -> 숫자 그 중 1개는 위치까지 확정
-2 0 -> 숫자 2개 확정 & 위치까지 확정.
-0 1 -> 489 중 9의 자리에 들어갈 숫자를 정해야 되는데 9였다면 1스트라이크겠지. 볼이기 때문에 4 or 8
+const solution = (baseball) => {
+  const nums = baseball.map(([x, _, $]) => x);
+  const sb = baseball.map(([_, s, b]) => [s, b]);
+  let count = 0;
+  for (const n of sequence(9)) {
+    if (JSON.stringify(nums.map(v => answer(n, v))) === JSON.stringify(sb)) count += 1;
+  }
+  
+  return count;
+};
 
-1. 먼저 첫번째 원소부터 보면서 가능한 등장 가능한 숫자를 파악한다.
-2. 각 자리에 가능한 숫자를 배열에 넣는다. 일단 처음엔 1~9까지 각 배열에 초기값으로 넣는다.
-3. 각 자리에 가능한 숫자를 규칙에 따라 제거하고 추가하며 최종 남은 세 개의 배열의 길이를 모두 곱한다.
-*/
+const answer = (n, m) => {
+  const x = [...`${n}`];
+  const y = [...`${m}`];
+  let s = 0;
+  let b = 0;
 
-const solution = () => {
-  const [[x, y, z]] = [[123, 3, 0]];
-  return 3;
+  for (const i of [0, 1, 2]) {
+    if (y.includes(x[i])) {
+      if (y.indexOf(x[i]) === i) {
+        s += 1;
+      } else {
+        b += 1;
+      }
+    }
+  }
+
+  return [s, b];
+};
+
+function *sequence(n) {
+  const range = [...Array(n).fill().map((_, i) => i + 1)];
+  for (const i of range)
+    for (const j of range.filter(v => v !== i))
+      for (const k of range.filter(v => (v !== i) && (v !== j)))
+        yield +`${i}${j}${k}`;
 };
 
 test('solution',() => {
-  expect(solution([[123, 3, 0]])).toBe(3);
-  // expect(solution([[123, 1, 1], [356, 1, 0], [327, 2, 0], [489, 0, 1]])).toBe(2);
+  expect(solution([[123, 1, 1], [356, 1, 0], [327, 2, 0], [489, 0, 1]])).toBe(2);
+});
+
+test('answer', () => {
+  expect(answer(123, 124)).toEqual([2, 0]);
+  expect(answer(123, 142)).toEqual([1, 1]);
+  expect(answer(123, 351)).toEqual([0, 2]);
 });
