@@ -1,4 +1,7 @@
 const solution = (baseball) => {
+  const allCases = new Set(Array(900).fill(100).map((v, i) => `${v + i}`));
+  console.log(allCases);
+
   const nums = baseball.map(([x, _, $]) => x);
   const sb = baseball.map(([_, s, b]) => [s, b]);
   let count = 0;
@@ -28,13 +31,13 @@ const answer = (n, m) => {
   return [s, b];
 };
 
-function *sequence(n) {
-  const range = [...Array(n).fill().map((_, i) => i + 1)];
-  for (const i of range)
-    for (const j of range.filter(v => v !== i))
-      for (const k of range.filter(v => (v !== i) && (v !== j)))
-        yield +`${i}${j}${k}`;
-};
+// function *sequence(n) {
+//   const range = [...Array(n).fill().map((_, i) => i + 1)];
+//   for (const i of range)
+//     for (const j of range.filter(v => v !== i))
+//       for (const k of range.filter(v => (v !== i) && (v !== j)))
+//         yield +`${i}${j}${k}`;
+// };
 
 test('solution',() => {
   expect(solution([[123, 1, 1], [356, 1, 0], [327, 2, 0], [489, 0, 1]])).toBe(2);
