@@ -1,5 +1,5 @@
 def solution(brown, red):
-    [[x, y]] = [i for i in comb(int((brown - 4) / 2)) if i[0] * i[1] == red]
+    [[x, y]] = [i for i in comb((brown - 4) // 2) if i[0] * i[1] == red]
     return [y + 2, x + 2]
 
 
