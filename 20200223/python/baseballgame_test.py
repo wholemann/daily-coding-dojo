@@ -4,7 +4,6 @@ from itertools import permutations
 def solution(baseball):
     numbers = [str(x) for x in range(1, 10)]
     candidates = [''.join(result_set) for result_set in permutations(numbers, 3)]
-    count = 0
 
     for (request, strikes, balls) in baseball:
         candidates = [number for number in candidates if match(str(request), number) == (strikes, balls)]
