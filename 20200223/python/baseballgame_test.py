@@ -5,19 +5,19 @@ def solution(baseball):
     numbers = [str(x) for x in range(1, 10)]
     candidates = [''.join(result_set) for result_set in permutations(numbers, 3)]
 
-    for (request, strikes, balls) in baseball:
-        candidates = [number for number in candidates if match(str(request), number) == (strikes, balls)]
+    for (question, strikes, balls) in baseball:
+        candidates = [candidate for candidate in candidates if match(str(question), candidate) == (strikes, balls)]
 
     return len(candidates)
 
 
-def match(request, number):
+def match(question, candidate):
     strikes, balls = 0, 0
 
     for i in range(3):
-        if request[i] == number[i]:
+        if question[i] == candidate[i]:
             strikes += 1
-        elif request[i] in number:
+        elif question[i] in candidate:
             balls += 1
 
     return strikes, balls
