@@ -49,17 +49,17 @@ fun solution3(record: Array<String>): Array<String> {
 
     return record
             .map {
-                val r = it.split(" ")
-                when (r.first()) {
-                    "Enter", "Change" -> nicknames[r[1]] = r[2]
+                val (command, uid, nickname) = "$it ".split(" ")
+                when (command) {
+                    "Enter", "Change" -> nicknames[uid] = nickname
                 }
-                r
+                command to uid
             }
             .asSequence()
-            .filter { (command, _, _) ->
+            .filter { (command, _) ->
                 command != "Change"
             }
-            .map { (command, uid, _) ->
+            .map { (command, uid) ->
                 when (command) {
                     "Enter" -> "${nicknames[uid]}님이 들어왔습니다."
                     else -> "${nicknames[uid]}님이 나갔습니다."
