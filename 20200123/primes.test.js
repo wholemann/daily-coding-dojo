@@ -15,16 +15,16 @@ const solution1 = (n) => {
 
 // functional but slow
 const solution2 = (n) => {
-  const sieve = [...Array(Math.floor(Math.sqrt(n))).fill().map((_, i) => i + 2)];
+  const sieve = Array(Math.floor(Math.sqrt(n))).fill().map((_, i) => i + 2);
 
-  return sieve.reduce(({ nums, primes }, _, index) => ({
-    nums: tail(nums).filter(v => v % head(nums) !== 0),
-    primes: index !== sieve.length - 1 ? [...primes, head(nums)] : [...primes, ...nums]
+  return sieve.reduce(({ nums, primes }, cur, index) => ({
+    nums: nums.filter(v => v % nums[0] !== 0),
+    primes: index !== sieve.length - 1 ? primes + 1 : primes + nums.length
   }), {
-    nums: [...Array(Math.ceil(n/2) - 1).fill().map((_, i) => 2*i + 3)],
-    primes: [2],
-  }).primes.length
-}
+    nums: Array(n - 1).fill(true),
+    primes: 0,
+  }).primes
+};
 
 const head = (xs) => xs.slice(0, 1)[0];
 
@@ -35,6 +35,7 @@ test('solution', () => {
     expect(solution(2)).toBe(1);
     expect(solution(5)).toBe(3);
     expect(solution(10)).toBe(4);
+    // expect(solution(1000000)).toBe(4);
   });
 });
   
