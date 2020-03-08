@@ -7,8 +7,8 @@ def solution(heights):
     receivers = []
     while heights:
         s, heights = heights[-1], heights[:-1]
-        indexes = [i for i, r in enumerate(heights) if s < r]
-        receivers.insert(0, indexes and max(indexes) + 1 or 0)
+        candidates = [i for i, r in enumerate(heights) if s < r]
+        receivers.insert(0, candidates and max(candidates) + 1 or 0)
 
     return receivers
 
