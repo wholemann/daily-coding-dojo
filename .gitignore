@@ -114,3 +114,34 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# Created by https://www.toptal.com/developers/gitignore/api/scala,sbt,vscode,metals
+# Edit at https://www.toptal.com/developers/gitignore?templates=scala,sbt,vscode,metals
+
+### Metals ###
+.metals/
+.bloop/
+project/**/metals.sbt
+
+### SBT ###
+# Simple Build Tool
+# http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
+
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.history
+.cache
+.lib/
+.bsp
+
+### Scala ###
+*.class
+*.log
+
+### vscode ###
+.vscode/*
+
+# End of https://www.toptal.com/developers/gitignore/api/scala,sbt,vscode,metals
